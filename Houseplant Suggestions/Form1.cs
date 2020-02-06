@@ -30,6 +30,18 @@ namespace Houseplant_Suggestions
             int homeTemp = trkTemp.Value;
             bool southFacingWindowAvailable = chkSouthFacing.Checked;
 
+            if (homeTemp == 50)
+            {
+                MessageBox.Show(text: "Your home may be too cold for most houseplants", caption: "Information");
+            }
+            if(homeTemp == 90) 
+            {
+                //Can you show a message with caption "Information" and 
+                // and text "Your home may be too warm for most plants"
+                // Use the named parameters for the text and caption parameters
+                MessageBox.Show(text: "Your home may be too warm for most hourseplant", caption: "Information");
+            }
+
             //Call our method, use return value
             string suggestionPlant = GenerateSuggestion(homeTemp, southFacingWindowAvailable);
 
@@ -70,16 +82,28 @@ namespace Houseplant_Suggestions
 
         private void InkHousePlanatInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowWebPage(lblSuggestion.Text);
-        }
-
-        private void ShowWebPage(string plantName) // Create new method
-        {
+            if (lblSuggestion.Text == "Plant suggestion here")
+            {
+                ShowWebPage(); //plantNameis optional
+            }
+            else
+            {
+                ShowWebPage(lblSuggestion.Text);
+            }
+        } 
+        
+         private void ShowWebPage(string plantName = null) // Create new method
+         {
+           
             string url = "https://www.houseplant411.com/";
 
-            // Link to a specific plant should be in the form "https://www.houseplant411.com/houseplant?hpq=ivy"
-            url = url + "houseplant?hpq=" + plantName;
-
+            if (plantName != null)
+            {
+                // Link to a specific plant should be in the form "https://www.houseplant411.com/houseplant?hpq=ivy"
+                url = url + "houseplant?hpq=" + plantName;
+            }
+            
+            
             System.Diagnostics.Process.Start(url); // Lauch web browser, navigate to URL given
         }
     }   
