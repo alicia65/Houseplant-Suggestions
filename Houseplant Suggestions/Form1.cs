@@ -36,23 +36,23 @@ namespace Houseplant_Suggestions
             lblSuggestion.Text = suggestionPlant;
         }
 
-        private string GenerateSuggestion(int temp, bool southFacing) 
+        private string GenerateSuggestion(int temp, bool southFacing)
         {
             // TODO - you'll see an error until you write code to return a string
-            if (southFacing) 
+            if (southFacing)
             {
-                if (temp > 65) 
+                if (temp > 65)
                 {
                     return "Peace Lily"; // Warm with light
                 }
-                else 
+                else
                 {
                     return "Spider Plant"; // Cool with light
                 }
             }
-            else 
+            else
             {
-                if(temp > 65) 
+                if (temp > 65)
                 {
                     return "Dragon Tree"; //Warm with low light
                 }
@@ -62,5 +62,25 @@ namespace Houseplant_Suggestions
                 }
             }
         }
-    }
+
+        private void lblTemp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void InkHousePlanatInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ShowWebPage(lblSuggestion.Text);
+        }
+
+        private void ShowWebPage(string plantName) // Create new method
+        {
+            string url = "https://www.houseplant411.com/";
+
+            // Link to a specific plant should be in the form "https://www.houseplant411.com/houseplant?hpq=ivy"
+            url = url + "houseplant?hpq=" + plantName;
+
+            System.Diagnostics.Process.Start(url); // Lauch web browser, navigate to URL given
+        }
+    }   
 }

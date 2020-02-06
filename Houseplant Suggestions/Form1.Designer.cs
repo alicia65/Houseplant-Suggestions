@@ -33,6 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblSuggestion = new System.Windows.Forms.Label();
             this.lblTemp = new System.Windows.Forms.Label();
+            this.InkHousePlanatInfo = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.trkTemp)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,12 +86,25 @@
             this.lblTemp.Size = new System.Drawing.Size(41, 17);
             this.lblTemp.TabIndex = 6;
             this.lblTemp.Text = "50˚F\r\n";
+            this.lblTemp.Click += new System.EventHandler(this.lblTemp_Click);
+            // 
+            // InkHousePlanatInfo
+            // 
+            this.InkHousePlanatInfo.AutoSize = true;
+            this.InkHousePlanatInfo.Location = new System.Drawing.Point(629, 341);
+            this.InkHousePlanatInfo.Name = "InkHousePlanatInfo";
+            this.InkHousePlanatInfo.Size = new System.Drawing.Size(149, 17);
+            this.InkHousePlanatInfo.TabIndex = 7;
+            this.InkHousePlanatInfo.TabStop = true;
+            this.InkHousePlanatInfo.Text = "houseplant411.com";
+            this.InkHousePlanatInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.InkHousePlanatInfo_LinkClicked);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 398);
+            this.Controls.Add(this.InkHousePlanatInfo);
             this.Controls.Add(this.lblTemp);
             this.Controls.Add(this.lblSuggestion);
             this.Controls.Add(this.label2);
@@ -112,6 +126,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblSuggestion;
         private System.Windows.Forms.Label lblTemp;
+        private System.Windows.Forms.LinkLabel InkHousePlanatInfo;
     }
 }
 
