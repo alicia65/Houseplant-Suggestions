@@ -14,8 +14,8 @@ namespace Houseplant_Suggestions
     {
         readonly int MinTemp = 50;  //Global variable, available to all methods
         readonly int MaxTemp = 90; // Convention is to use UppercaseCamelCase names
-        bool ShowMinWarning = false;
-        bool ShowMaxWarning = false;
+        bool ShownMinWarning = false;
+        bool ShownMaxWarning = false;
 
         public Form1()
         {
@@ -31,16 +31,18 @@ namespace Houseplant_Suggestions
             int homeTemp = trkTemp.Value;
             bool southFacingWindowAvailable = chkSouthFacing.Checked;
 
-            if (homeTemp == MinTemp & ShowMinWarning)
+            if (ShownMinWarning == false && homeTemp == MinTemp  )
             {
                 MessageBox.Show(text: "Your home may be too cold for most houseplants", caption: "Information");
+                ShownMinWarning = true;
             }
-            if(homeTemp == MaxTemp & ShowMaxWarning) 
+            if(ShownMaxWarning == false && homeTemp == MaxTemp) 
             {
                 //Can you show a message with caption "Information" and 
                 // and text "Your home may be too warm for most plants"
                 // Use the named parameters for the text and caption parameters
                 MessageBox.Show(text: "Your home may be too warm for most hourseplant", caption: "Information");
+                ShownMaxWarning = true;
             }
 
             //Call our method, use return value
