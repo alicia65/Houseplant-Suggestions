@@ -77,6 +77,7 @@
             this.lblSuggestion.Size = new System.Drawing.Size(167, 17);
             this.lblSuggestion.TabIndex = 5;
             this.lblSuggestion.Text = "Plant suggestion here";
+            this.lblSuggestion.Click += new System.EventHandler(this.lblSuggestion_Click);
             // 
             // lblTemp
             // 

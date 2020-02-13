@@ -12,17 +12,18 @@ namespace Houseplant_Suggestions
 {
     public partial class Form1 : Form
     {
+        readonly int MinTemp = 50;  //Global variable, available to all methods
+        readonly int MaxTemp = 90; // Convention is to use UppercaseCamelCase names
+        bool ShowMinWarning = false;
+        bool ShowMaxWarning = false;
+
         public Form1()
         {
             InitializeComponent();
             this.trkTemp.Scroll += new System.EventHandler(this.HouseConditionsChanged);
-        }
 
-        private void trkTemp_Scroll(object sender, EventArgs e)
-        {
-            // Use format string, the # symbol is replace by thenumber in tryTemp. Value
-            // Pressing Alt + 176 on your number pad types a ˚ symbol
-            lblTemp.Text = trkTemp.Value.ToString("# ˚F");
+            this.trkTemp.Minimum = MinTemp;
+            this.trkTemp.Maximum = MaxTemp;
         }
 
         private void HouseConditionsChanged(object sender, EventArgs e)
@@ -30,11 +31,11 @@ namespace Houseplant_Suggestions
             int homeTemp = trkTemp.Value;
             bool southFacingWindowAvailable = chkSouthFacing.Checked;
 
-            if (homeTemp == 50)
+            if (homeTemp == MinTemp & ShowMinWarning)
             {
                 MessageBox.Show(text: "Your home may be too cold for most houseplants", caption: "Information");
             }
-            if(homeTemp == 90) 
+            if(homeTemp == MaxTemp & ShowMaxWarning) 
             {
                 //Can you show a message with caption "Information" and 
                 // and text "Your home may be too warm for most plants"
@@ -46,6 +47,13 @@ namespace Houseplant_Suggestions
             string suggestionPlant = GenerateSuggestion(homeTemp, southFacingWindowAvailable);
 
             lblSuggestion.Text = suggestionPlant;
+        }
+        
+        private void trkTemp_Scroll(object sender, EventArgs e)
+        {
+            // Use format string, the # symbol is replace by thenumber in tryTemp. Value
+            // Pressing Alt + 176 on your number pad types a ˚ symbol
+            lblTemp.Text = trkTemp.Value.ToString("# ˚F");
         }
 
         private string GenerateSuggestion(int temp, bool southFacing)
@@ -105,6 +113,11 @@ namespace Houseplant_Suggestions
             
             
             System.Diagnostics.Process.Start(url); // Lauch web browser, navigate to URL given
+        }
+
+        private void lblSuggestion_Click(object sender, EventArgs e)
+        {
+
         }
     }   
 }
