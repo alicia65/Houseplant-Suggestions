@@ -14,8 +14,12 @@ namespace Houseplant_Suggestions
     {
         readonly int MinTemp = 50;  //Global variable, available to all methods
         readonly int MaxTemp = 90; // Convention is to use UppercaseCamelCase names
+        
         bool ShownMinWarning = false;
         bool ShownMaxWarning = false;
+
+        HousePlantInfo plantInfo = new HousePlantInfo();
+
 
         public Form1()
         {
@@ -46,7 +50,7 @@ namespace Houseplant_Suggestions
             }
 
             //Call our method, use return value
-            string suggestionPlant = GenerateSuggestion(homeTemp, southFacingWindowAvailable);
+            string suggestionPlant = plantInfo.GenerateSuggestion(homeTemp, southFacingWindowAvailable);
 
             lblSuggestion.Text = suggestionPlant;
         }
@@ -58,32 +62,7 @@ namespace Houseplant_Suggestions
             lblTemp.Text = trkTemp.Value.ToString("# ˚F");
         }
 
-        private string GenerateSuggestion(int temp, bool southFacing)
-        {
-            // TODO - you'll see an error until you write code to return a string
-            if (southFacing)
-            {
-                if (temp > 65)
-                {
-                    return "Peace Lily"; // Warm with light
-                }
-                else
-                {
-                    return "Spider Plant"; // Cool with light
-                }
-            }
-            else
-            {
-                if (temp > 65)
-                {
-                    return "Dragon Tree"; //Warm with low light
-                }
-                else
-                {
-                    return "Ivy"; //Cool with low light
-                }
-            }
-        }
+        
 
         private void lblTemp_Click(object sender, EventArgs e)
         {
@@ -94,30 +73,22 @@ namespace Houseplant_Suggestions
         {
             if (lblSuggestion.Text == "Plant suggestion here")
             {
-                ShowWebPage(); //plantNameis optional
+                plantInfo.ShowWebPage(); //plantNameis optional
             }
             else
             {
-                ShowWebPage(lblSuggestion.Text);
+                plantInfo.ShowWebPage(lblSuggestion.Text);
             }
         } 
         
-         private void ShowWebPage(string plantName = null) // Create new method
-         {
-           
-            string url = "https://www.houseplant411.com/";
-
-            if (plantName != null)
-            {
-                // Link to a specific plant should be in the form "https://www.houseplant411.com/houseplant?hpq=ivy"
-                url = url + "houseplant?hpq=" + plantName;
-            }
-            
-            
-            System.Diagnostics.Process.Start(url); // Lauch web browser, navigate to URL given
-        }
+        
 
         private void lblSuggestion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
